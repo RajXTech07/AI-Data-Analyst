@@ -25,44 +25,7 @@
   <img src="docs/assets/workflow-animation.svg" alt="AI Data Analyst Autonomous Workflow" width="100%" />
 </p>
 
-```mermaid
-flowchart LR
-    subgraph S1["1. Ingestion & Safety"]
-        CSV["Raw CSV Upload"] --> Sniff["Universal Safe Loader\nEncoding / Delimiter Sniff"]
-        Sniff --> Issues["12 Issue Detectors\nHealth Trust Score (0-100%)"]
-        Issues --> Cleaner["Reversible Cleaner\n& Parquet Caching"]
-    end
 
-    subgraph S2["2. High-Performance Engine"]
-        Cleaner --> Duck["DuckDB Columnar Store\nOut-of-Core (1M+ Rows)"]
-        Duck --> Welford["Welford Algorithm\nStable Mean / Variance"]
-        Welford --> TypeInf["Semantic Type Inference\nDates / Currencies"]
-    end
-
-    subgraph S3["3. Orchestration & Safety"]
-        TypeInf --> Planner["Gemini Agent Planner\nDynamic 5-12 Step Plan"]
-        Planner --> Validator{"Agent Safety Validator\nTool Whitelist & Column Check"}
-    end
-
-    subgraph S4["4. Deterministic Execution"]
-        Validator -->|Approved Call| Tools["10 Pure Statistical Tools\nPandas · NumPy · SciPy · Plotly"]
-        Tools --> ExecDB["ToolExecution DB Ledger\nImmutable Citation Hash"]
-    end
-
-    subgraph S5["5. Interpretation & Cockpit"]
-        ExecDB --> Interp["Gemini Interpreter\nObservation · Evidence · Limits"]
-        Interp --> UI["Interactive Cockpits\nReact 18 UI & Streamlit Dashboard"]
-        UI -->|Conversational Chat| Planner
-    end
-
-    style S1 fill:#091424,stroke:#00f5ff,stroke-width:1.5px,color:#fff
-    style S2 fill:#071a1c,stroke:#10b981,stroke-width:1.5px,color:#fff
-    style S3 fill:#1a102e,stroke:#a855f7,stroke-width:1.5px,color:#fff
-    style S4 fill:#230c17,stroke:#f43f5e,stroke-width:1.5px,color:#fff
-    style S5 fill:#0c1e2b,stroke:#38bdf8,stroke-width:1.5px,color:#fff
-```
-
----
 
 ## 💡 Why This is Different from "Chat with your CSV"
 
