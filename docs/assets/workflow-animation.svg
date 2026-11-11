@@ -1,0 +1,450 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="100%" height="100%" style="background:#080c14; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Background Grid Pattern -->
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#131b2e" stroke-width="0.75" />
+    </pattern>
+
+    <!-- Glowing Filters -->
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glow-emerald" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glow-purple" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glow-amber" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glow-rose" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Gradients -->
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0e1726" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#0b111e" stop-opacity="0.98" />
+    </linearGradient>
+
+    <!-- Card Top Accents -->
+    <linearGradient id="grad-cyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f5ff" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+    <linearGradient id="grad-emerald" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+    <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <linearGradient id="grad-rose" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f43f5e" />
+      <stop offset="100%" stop-color="#e11d48" />
+    </linearGradient>
+    <linearGradient id="grad-blue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+    <linearGradient id="grad-teal" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#14b8a6" />
+      <stop offset="100%" stop-color="#0d9488" />
+    </linearGradient>
+  </defs>
+
+  <style>
+    /* CSS Keyframe Animations */
+    @keyframes flowDashes {
+      0% { stroke-dashoffset: 40; }
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes flowDashesRev {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: 40; }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.35; }
+      50% { opacity: 0.95; }
+    }
+    @keyframes blinkLed {
+      0%, 100% { opacity: 1; filter: drop-shadow(0 0 5px #10b981); }
+      50% { opacity: 0.3; filter: none; }
+    }
+    @keyframes travelDot {
+      0% { offset-distance: 0%; opacity: 0; }
+      15% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { offset-distance: 100%; opacity: 0; }
+    }
+    @keyframes badgePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    .flow-path {
+      stroke-dasharray: 6 6;
+      animation: flowDashes 1.8s linear infinite;
+    }
+    .flow-path-rev {
+      stroke-dasharray: 6 6;
+      animation: flowDashesRev 2.2s linear infinite;
+    }
+    .live-dot {
+      animation: blinkLed 1.4s ease-in-out infinite;
+    }
+    .glow-pulse {
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+    .card {
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      filter: brightness(1.12);
+    }
+  </style>
+
+  <!-- Background Layer -->
+  <rect width="1200" height="680" fill="#080c14" />
+  <rect width="1200" height="680" fill="url(#grid)" />
+
+  <!-- Background Ambient Glow Orbs -->
+  <circle cx="200" cy="180" r="140" fill="#0284c7" opacity="0.06" filter="url(#glow-cyan)" />
+  <circle cx="750" cy="180" r="160" fill="#7c3aed" opacity="0.07" filter="url(#glow-purple)" />
+  <circle cx="1000" cy="480" r="140" fill="#e11d48" opacity="0.05" filter="url(#glow-rose)" />
+  <circle cx="200" cy="500" r="150" fill="#10b981" opacity="0.06" filter="url(#glow-emerald)" />
+
+  <!-- TOP HEADER -->
+  <g transform="translate(50, 26)">
+    <!-- Brand / Title -->
+    <text x="0" y="24" fill="url(#headerGrad)" font-size="20" font-weight="800" letter-spacing="1.2">
+      AI DATA ANALYST — END-TO-END AUTONOMOUS WORKFLOW
+    </text>
+    <text x="0" y="45" fill="#94a3b8" font-size="12" font-weight="400" letter-spacing="0.3">
+      Deterministic Scientific Architecture · 10 Audited Tools · SciPy / NumPy / DuckDB · Zero LLM Math Hallucination
+    </text>
+
+    <!-- Top Status Badges -->
+    <g transform="translate(730, 8)">
+      <!-- System Active Badge -->
+      <rect x="0" y="0" width="124" height="28" rx="14" fill="#0e231d" stroke="#10b981" stroke-width="1.2" />
+      <circle cx="16" cy="14" r="5" fill="#10b981" class="live-dot" />
+      <text x="28" y="18" fill="#34d399" font-size="11" font-weight="700" letter-spacing="0.5">50/50 TESTS PASSED</text>
+
+      <!-- Architecture Badge -->
+      <rect x="134" y="0" width="138" height="28" rx="14" fill="#181533" stroke="#818cf8" stroke-width="1.2" />
+      <text x="145" y="18" fill="#c7d2fe" font-size="10.5" font-weight="600">DUAL EXECUTION ENGINE</text>
+
+      <!-- Model Badge -->
+      <rect x="282" y="0" width="128" height="28" rx="14" fill="#1f182c" stroke="#a855f7" stroke-width="1.2" />
+      <text x="293" y="18" fill="#e9d5ff" font-size="10.5" font-weight="600">GEMINI 3.5 FLASH LITE</text>
+    </g>
+  </g>
+
+  <!-- ==================== FLOW CONNECTOR PATHS (ANIMATED) ==================== -->
+  <g fill="none">
+    <!-- Path 1 -> 2 (Ingestion to Columnar Engine) -->
+    <path d="M 280 205 L 340 205" stroke="#00f5ff" stroke-width="2.5" class="flow-path" />
+    <polygon points="338,201 345,205 338,209" fill="#00f5ff" />
+
+    <!-- Path 2 -> 3 (Columnar Engine to Gemini Planner) -->
+    <path d="M 570 205 L 630 205" stroke="#10b981" stroke-width="2.5" class="flow-path" />
+    <polygon points="628,201 635,205 628,209" fill="#10b981" />
+
+    <!-- Path 3 -> 4 (Planner to Safety Validator) -->
+    <path d="M 860 205 L 920 205" stroke="#a855f7" stroke-width="2.5" class="flow-path" />
+    <polygon points="918,201 925,205 918,209" fill="#a855f7" />
+
+    <!-- Path 4 -> 5 (Validator down to 10 Pure Tools) -->
+    <path d="M 1035 300 C 1035 345, 1035 365, 1035 410" stroke="#f59e0b" stroke-width="2.5" class="flow-path" />
+    <polygon points="1031,408 1035,415 1039,408" fill="#f59e0b" />
+
+    <!-- Path 5 -> 6 (10 Pure Tools to ToolExecution Ledger) -->
+    <path d="M 920 505 L 860 505" stroke="#f43f5e" stroke-width="2.5" class="flow-path" />
+    <polygon points="862,501 855,505 862,509" fill="#f43f5e" />
+
+    <!-- Path 6 -> 7 (Ledger to Gemini Interpreter) -->
+    <path d="M 630 505 L 570 505" stroke="#3b82f6" stroke-width="2.5" class="flow-path" />
+    <polygon points="572,501 565,505 572,509" fill="#3b82f6" />
+
+    <!-- Path 7 -> 8 (Interpreter to UI Cockpits) -->
+    <path d="M 340 505 L 280 505" stroke="#14b8a6" stroke-width="2.5" class="flow-path" />
+    <polygon points="282,501 275,505 282,509" fill="#14b8a6" />
+
+    <!-- Loopback Path 8 -> 3 (Chat Follow-Up Loop: Cockpit to Planner) -->
+    <path d="M 165 410 C 165 350, 745 350, 745 300" stroke="#00f5ff" stroke-width="1.8" stroke-opacity="0.75" class="flow-path-rev" />
+    <polygon points="741,305 745,297 749,305" fill="#00f5ff" />
+  </g>
+
+  <!-- Follow-up Chat Loop Tag -->
+  <g transform="translate(380, 335)">
+    <rect x="0" y="0" width="180" height="22" rx="11" fill="#091424" stroke="#00f5ff" stroke-width="1" />
+    <text x="90" y="15" fill="#38bdf8" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="0.5">
+      ↺ INTERACTIVE CHAT LOOP
+    </text>
+  </g>
+
+  <!-- ==================== ROW 1 CARDS ==================== -->
+
+  <!-- CARD 1: Universal Safe CSV Loader -->
+  <g class="card" transform="translate(50, 110)">
+    <!-- Base Card -->
+    <rect width="230" height="190" rx="12" fill="url(#cardBg)" stroke="#1e293b" stroke-width="1.5" />
+    <rect width="230" height="5" rx="2" fill="url(#grad-cyan)" />
+    <!-- Step Badge -->
+    <rect x="14" y="15" width="22" height="22" rx="6" fill="#083344" stroke="#00f5ff" stroke-width="1.2" />
+    <text x="25" y="30" fill="#00f5ff" font-size="11" font-weight="800" text-anchor="middle">1</text>
+    <text x="44" y="27" fill="#38bdf8" font-size="10" font-weight="800" letter-spacing="1">DATA INGESTION</text>
+    <text x="44" y="42" fill="#ffffff" font-size="13.5" font-weight="700">Universal Safe Loader</text>
+
+    <!-- Checklist / Specs -->
+    <g transform="translate(14, 62)" font-size="10.5" fill="#cbd5e1">
+      <circle cx="4" cy="5" r="2.5" fill="#00f5ff" />
+      <text x="14" y="9">Auto Delimiter &amp; Encoding Sniff</text>
+      
+      <circle cx="4" cy="27" r="2.5" fill="#00f5ff" />
+      <text x="14" y="31">Ragged Row &amp; BOM Auto-Repair</text>
+      
+      <circle cx="4" cy="49" r="2.5" fill="#00f5ff" />
+      <text x="14" y="53">12 Agnostic Issue Detectors</text>
+      
+      <circle cx="4" cy="71" r="2.5" fill="#00f5ff" />
+      <text x="14" y="75">Reversible Cleaning Engine</text>
+
+      <rect x="0" y="92" width="202" height="22" rx="6" fill="#042f2e" stroke="#0d9488" stroke-width="0.8" />
+      <text x="101" y="107" fill="#5eead4" font-size="9.5" font-weight="700" text-anchor="middle">TRUST SCORE (0-100%)</text>
+    </g>
+  </g>
+
+  <!-- CARD 2: Columnar & Stats Engine -->
+  <g class="card" transform="translate(340, 110)">
+    <rect width="230" height="190" rx="12" fill="url(#cardBg)" stroke="#1e293b" stroke-width="1.5" />
+    <rect width="230" height="5" rx="2" fill="url(#grad-emerald)" />
+    <!-- Step Badge -->
+    <rect x="14" y="15" width="22" height="22" rx="6" fill="#064e3b" stroke="#10b981" stroke-width="1.2" />
+    <text x="25" y="30" fill="#10b981" font-size="11" font-weight="800" text-anchor="middle">2</text>
+    <text x="44" y="27" fill="#34d399" font-size="10" font-weight="800" letter-spacing="1">COLUMNAR ENGINE</text>
+    <text x="44" y="42" fill="#ffffff" font-size="13.5" font-weight="700">DuckDB &amp; Parquet</text>
+
+    <!-- Checklist / Specs -->
+    <g transform="translate(14, 62)" font-size="10.5" fill="#cbd5e1">
+      <circle cx="4" cy="5" r="2.5" fill="#10b981" />
+      <text x="14" y="9">Out-of-Core 1M+ Row Engine</text>
+      
+      <circle cx="4" cy="27" r="2.5" fill="#10b981" />
+      <text x="14" y="31">Welford Stable Variances</text>
+      
+      <circle cx="4" cy="49" r="2.5" fill="#10b981" />
+      <text x="14" y="53">Semantic Dtype Inference</text>
+      
+      <circle cx="4" cy="71" r="2.5" fill="#10b981" />
+      <text x="14" y="75">Deterministic Hash Caching</text>
+
+      <rect x="0" y="92" width="202" height="22" rx="6" fill="#062d21" stroke="#059669" stroke-width="0.8" />
+      <text x="101" y="107" fill="#6ee7b7" font-size="9.5" font-weight="700" text-anchor="middle">SUB-MILLISECOND QUERIES</text>
+    </g>
+  </g>
+
+  <!-- CARD 3: Gemini Agent Planner -->
+  <g class="card" transform="translate(630, 110)">
+    <rect width="230" height="190" rx="12" fill="url(#cardBg)" stroke="#1e293b" stroke-width="1.5" />
+    <rect width="230" height="5" rx="2" fill="url(#grad-purple)" />
+    <!-- Step Badge -->
+    <rect x="14" y="15" width="22" height="22" rx="6" fill="#3b0764" stroke="#a855f7" stroke-width="1.2" />
+    <text x="25" y="30" fill="#a855f7" font-size="11" font-weight="800" text-anchor="middle">3</text>
+    <text x="44" y="27" fill="#c084fc" font-size="10" font-weight="800" letter-spacing="1">ORCHESTRATION</text>
+    <text x="44" y="42" fill="#ffffff" font-size="13.5" font-weight="700">Gemini Agent Planner</text>
+
+    <!-- Checklist / Specs -->
+    <g transform="translate(14, 62)" font-size="10.5" fill="#cbd5e1">
+      <circle cx="4" cy="5" r="2.5" fill="#a855f7" />
+      <text x="14" y="9">gemini-3.5-flash-lite LLM</text>
+      
+      <circle cx="4" cy="27" r="2.5" fill="#a855f7" />
+      <text x="14" y="31">Dynamic 5-12 Step Plans</text>
+      
+      <circle cx="4" cy="49" r="2.5" fill="#a855f7" />
+      <text x="14" y="53">Scientific Hypothesis Framing</text>
+      
+      <circle cx="4" cy="71" r="2.5" fill="#a855f7" />
+      <text x="14" y="75">Deterministic Fallback Mode</text>
+
+      <rect x="0" y="92" width="202" height="22" rx="6" fill="#2e1065" stroke="#7c3aed" stroke-width="0.8" />
+      <text x="101" y="107" fill="#d8b4fe" font-size="9.5" font-weight="700" text-anchor="middle">SCHEMA INLINED / NO $REF</text>
+    </g>
+  </g>
+
+  <!-- CARD 4: Safety Validator -->
+  <g class="card" transform="translate(920, 110)">
+    <rect width="230" height="190" rx="12" fill="url(#cardBg)" stroke="#1e293b" stroke-width="1.5" />
+    <rect width="230" height="5" rx="2" fill="url(#grad-amber)" />
+    <!-- Step Badge -->
+    <rect x="14" y="15" width="22" height="22" rx="6" fill="#451a03" stroke="#f59e0b" stroke-width="1.2" />
+    <text x="25" y="30" fill="#f59e0b" font-size="11" font-weight="800" text-anchor="middle">4</text>
+    <text x="44" y="27" fill="#fbbf24" font-size="10" font-weight="800" letter-spacing="1">GATEKEEPER</text>
+    <text x="44" y="42" fill="#ffffff" font-size="13.5" font-weight="700">Safety &amp; Tool Validator</text>
+
+    <!-- Checklist / Specs -->
+    <g transform="translate(14, 62)" font-size="10.5" fill="#cbd5e1">
+      <circle cx="4" cy="5" r="2.5" fill="#f59e0b" />
+      <text x="14" y="9">Tool Whitelist Enforcement</text>
+      
+      <circle cx="4" cy="27" r="2.5" fill="#f59e0b" />
+      <text x="14" y="31">Strict Column Verification</text>
+      
+      <circle cx="4" cy="49" r="2.5" fill="#f59e0b" />
+      <text x="14" y="53">Blocks Prompt Injection</text>
+      
+      <circle cx="4" cy="71" r="2.5" fill="#f59e0b" />
+      <text x="14" y="75">Zero Unsanitized Math Allowed</text>
+
+      <rect x="0" y="92" width="202" height="22" rx="6" fill="#451a03" stroke="#b45309" stroke-width="0.8" />
+      <text x="101" y="107" fill="#fde68a" font-size="9.5" font-weight="700" text-anchor="middle">HERMETIC GATEWAY</text>
+    </g>
+  </g>
+
+  <!-- ==================== ROW 2 CARDS ==================== -->
+
+  <!-- CARD 5: 10 Pure Tools -->
+  <g class="card" transform="translate(920, 410)">
+    <rect width="230" height="190" rx="12" fill="url(#cardBg)" stroke="#1e293b" stroke-width="1.5" />
+    <rect width="230" height="5" rx="2" fill="url(#grad-rose)" />
+    <!-- Step Badge -->
+    <rect x="14" y="15" width="22" height="22" rx="6" fill="#4c0519" stroke="#f43f5e" stroke-width="1.2" />
+    <text x="25" y="30" fill="#f43f5e" font-size="11" font-weight="800" text-anchor="middle">5</text>
+    <text x="44" y="27" fill="#fb7185" font-size="10" font-weight="800" letter-spacing="1">DETERMINISTIC</text>
+    <text x="44" y="42" fill="#ffffff" font-size="13.5" font-weight="700">10 Pure Statistical Tools</text>
+
+    <!-- Checklist / Specs -->
+    <g transform="translate(14, 62)" font-size="10.5" fill="#cbd5e1">
+      <circle cx="4" cy="5" r="2.5" fill="#f43f5e" />
+      <text x="14" y="9">Pure Python: Pandas &amp; SciPy</text>
+      
+      <circle cx="4" cy="27" r="2.5" fill="#f43f5e" />
+      <text x="14" y="31">t-Test, ANOVA, Mann-Whitney</text>
+      
+      <circle cx="4" cy="49" r="2.5" fill="#f43f5e" />
+      <text x="14" y="53">Cohen's d, Eta², Cramér's V</text>
+      
+      <circle cx="4" cy="71" r="2.5" fill="#f43f5e" />
+      <text x="14" y="75">9 Anomaly Detection Engines</text>
+
+      <rect x="0" y="92" width="202" height="22" rx="6" fill="#4c0519" stroke="#be123c" stroke-width="0.8" />
+      <text x="101" y="107" fill="#fecdd3" font-size="9.5" font-weight="700" text-anchor="middle">ZERO LLM CALCULATION</text>
+    </g>
+  </g>
+
+  <!-- CARD 6: ToolExecution Ledger -->
+  <g class="card" transform="translate(630, 410)">
+    <rect width="230" height="190" rx="12" fill="url(#cardBg)" stroke="#1e293b" stroke-width="1.5" />
+    <rect width="230" height="5" rx="2" fill="url(#grad-blue)" />
+    <!-- Step Badge -->
+    <rect x="14" y="15" width="22" height="22" rx="6" fill="#172554" stroke="#3b82f6" stroke-width="1.2" />
+    <text x="25" y="30" fill="#3b82f6" font-size="11" font-weight="800" text-anchor="middle">6</text>
+    <text x="44" y="27" fill="#60a5fa" font-size="10" font-weight="800" letter-spacing="1">AUDIT TRAIL</text>
+    <text x="44" y="42" fill="#ffffff" font-size="13.5" font-weight="700">ToolExecution Ledger</text>
+
+    <!-- Checklist / Specs -->
+    <g transform="translate(14, 62)" font-size="10.5" fill="#cbd5e1">
+      <circle cx="4" cy="5" r="2.5" fill="#3b82f6" />
+      <text x="14" y="9">Immutable SQLite / Postgres</text>
+      
+      <circle cx="4" cy="27" r="2.5" fill="#3b82f6" />
+      <text x="14" y="31">Tool Name, Args &amp; Milliseconds</text>
+      
+      <circle cx="4" cy="49" r="2.5" fill="#3b82f6" />
+      <text x="14" y="53">Raw Serialized Tool Payloads</text>
+      
+      <circle cx="4" cy="71" r="2.5" fill="#3b82f6" />
+      <text x="14" y="75">Cryptographic Citation IDs</text>
+
+      <rect x="0" y="92" width="202" height="22" rx="6" fill="#1e3a8a" stroke="#2563eb" stroke-width="0.8" />
+      <text x="101" y="107" fill="#bfdbfe" font-size="9.5" font-weight="700" text-anchor="middle">TRACEABLE EVIDENCE CHAIN</text>
+    </g>
+  </g>
+
+  <!-- CARD 7: Evidence-Based Interpreter -->
+  <g class="card" transform="translate(340, 410)">
+    <rect width="230" height="190" rx="12" fill="url(#cardBg)" stroke="#1e293b" stroke-width="1.5" />
+    <rect width="230" height="5" rx="2" fill="url(#grad-teal)" />
+    <!-- Step Badge -->
+    <rect x="14" y="15" width="22" height="22" rx="6" fill="#042f2e" stroke="#14b8a6" stroke-width="1.2" />
+    <text x="25" y="30" fill="#14b8a6" font-size="11" font-weight="800" text-anchor="middle">7</text>
+    <text x="44" y="27" fill="#2dd4bf" font-size="10" font-weight="800" letter-spacing="1">SYNTHESIS</text>
+    <text x="44" y="42" fill="#ffffff" font-size="13.5" font-weight="700">Finding Interpreter</text>
+
+    <!-- Checklist / Specs -->
+    <g transform="translate(14, 62)" font-size="10.5" fill="#cbd5e1">
+      <circle cx="4" cy="5" r="2.5" fill="#14b8a6" />
+      <text x="14" y="9">Observations ≠ Evidence</text>
+      
+      <circle cx="4" cy="27" r="2.5" fill="#14b8a6" />
+      <text x="14" y="31">Grounding Regex Verification</text>
+      
+      <circle cx="4" cy="49" r="2.5" fill="#14b8a6" />
+      <text x="14" y="53">Mandatory Limitation Warnings</text>
+      
+      <circle cx="4" cy="71" r="2.5" fill="#14b8a6" />
+      <text x="14" y="75">Hypothesis: Supported / Rejected</text>
+
+      <rect x="0" y="92" width="202" height="22" rx="6" fill="#042f2e" stroke="#0d9488" stroke-width="0.8" />
+      <text x="101" y="107" fill="#99f6e4" font-size="9.5" font-weight="700" text-anchor="middle">GROUNDED CLAIMS ONLY</text>
+    </g>
+  </g>
+
+  <!-- CARD 8: React & Streamlit Cockpits -->
+  <g class="card" transform="translate(50, 410)">
+    <rect width="230" height="190" rx="12" fill="url(#cardBg)" stroke="#1e293b" stroke-width="1.5" />
+    <rect width="230" height="5" rx="2" fill="url(#grad-cyan)" />
+    <!-- Step Badge -->
+    <rect x="14" y="15" width="22" height="22" rx="6" fill="#083344" stroke="#00f5ff" stroke-width="1.2" />
+    <text x="25" y="30" fill="#00f5ff" font-size="11" font-weight="800" text-anchor="middle">8</text>
+    <text x="44" y="27" fill="#38bdf8" font-size="10" font-weight="800" letter-spacing="1">INTERFACES</text>
+    <text x="44" y="42" fill="#ffffff" font-size="13.5" font-weight="700">Cockpit &amp; Follow-up</text>
+
+    <!-- Checklist / Specs -->
+    <g transform="translate(14, 62)" font-size="10.5" fill="#cbd5e1">
+      <circle cx="4" cy="5" r="2.5" fill="#00f5ff" />
+      <text x="14" y="9">React 18 + Tailwind / Streamlit</text>
+      
+      <circle cx="4" cy="27" r="2.5" fill="#00f5ff" />
+      <text x="14" y="31">Live SSE Server-Sent Events</text>
+      
+      <circle cx="4" cy="49" r="2.5" fill="#00f5ff" />
+      <text x="14" y="53">Explorable Interactive Plotly</text>
+      
+      <circle cx="4" cy="71" r="2.5" fill="#00f5ff" />
+      <text x="14" y="75">What-If Scenarios &amp; Fragility</text>
+
+      <rect x="0" y="92" width="202" height="22" rx="6" fill="#082f49" stroke="#0284c7" stroke-width="0.8" />
+      <text x="101" y="107" fill="#7dd3fc" font-size="9.5" font-weight="700" text-anchor="middle">FULL CITATION INSPECTOR</text>
+    </g>
+  </g>
+
+  <!-- Bottom Footer Info -->
+  <g transform="translate(50, 642)">
+    <text x="0" y="0" fill="#64748b" font-size="11" font-weight="500">
+      Engineered for Enterprise &amp; Scientific Data Analysis · Fully Hermetic Testing · Zero Code Execution on LLM
+    </text>
+    <text x="1100" y="0" fill="#475569" font-size="11" font-weight="600" text-anchor="end">
+      FastAPI · DuckDB · SciPy · React 18 · Streamlit · Gemini
+    </text>
+  </g>
+</svg>
