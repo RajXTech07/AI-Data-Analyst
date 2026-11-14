@@ -88,6 +88,7 @@ backend/storage/
 node_modules/
 frontend/node_modules/
 frontend-streamlit/node_modules/
+frontend-streamlit
 dist/
 frontend/dist/
 .next/
@@ -122,3 +123,5 @@ desktop.ini
 *.sublime-workspace
 *.swp
 *~
+
+GEMINI.md

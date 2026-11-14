@@ -1,0 +1,21 @@
+student_id,department,gender,attendance,study_hours,previous_score,final_mark
+1001,Computer Science,Female,92,14.5,82,88
+1002,Computer Science,Male,78,9.0,70,74
+1003,Mathematics,Female,85,12.0,78,81
+1004,Mathematics,Male,64,6.5,60,63
+1005,Physics,Female,89,11.0,76,82
+1006,Physics,Male,71,8.0,65,68
+1007,Computer Science,Female,95,16.0,88,94
+1008,Computer Science,Male,60,5.0,55,59
+1009,Mathematics,Female,90,13.0,84,86
+1010,Mathematics,Male,75,9.5,72,76
+1011,Physics,Female,82,10.0,70,75
+1012,Physics,Male,58,4.5,52,56
+1013,Computer Science,Female,88,11.5,79,83
+1014,Computer Science,Male,84,10.5,75,80
+1015,Mathematics,Female,93,15.0,86,91
+1016,Mathematics,Male,67,7.0,61,65
+1017,Physics,Female,79,9.0,73,77
+1018,Physics,Male,81,10.0,74,78
+1019,Computer Science,Female,98,18.0,91,97
+1020,Computer Science,Male,73,8.5,68,72
