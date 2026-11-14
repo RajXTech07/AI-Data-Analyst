@@ -217,18 +217,18 @@ class DatasetService:
         # Convert to columnar Parquet for scalable execution
         parquet_path = Path(storage_path).with_suffix(".parquet")
         try:
-            columnar_engine.csv_to_parquet(
-                Path(storage_path),
-                parquet_path,
-                delimiter=safe_res.delimiter,
-                encoding=safe_res.encoding
-            )
-        except Exception as e:
-            logger.warning(f"Could not convert to Parquet immediately: {e}")
+            df.to_parquet(parquet_path, index=False)
+        except Exception as pe:
+            logger.warning(f"Could not dump df to parquet, falling back to streaming converter: {pe}")
             try:
-                df.to_parquet(parquet_path, index=False)
-            except Exception as pe:
-                logger.warning(f"Failed to dump to parquet: {pe}")
+                columnar_engine.csv_to_parquet(
+                    Path(storage_path),
+                    parquet_path,
+                    delimiter=safe_res.delimiter,
+                    encoding=safe_res.encoding
+                )
+            except Exception as e:
+                logger.warning(f"Could not convert to Parquet: {e}")
 
         # Profile dataset with loading report
         profile = profile_dataframe(df, loading_report=safe_res.loading_report)
