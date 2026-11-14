@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-canvas: #F8FAFC;
+    --color-surface: #FFFFFF;
+    --color-border: #E2E8F0;
+    --color-text-strong: #0F172A;
+    --color-text: #334155;
+    --color-text-muted: #64748B;
+  }
+
+  .dark {
+    --color-canvas: #0B1120;
+    --color-surface: #111827;
+    --color-border: #1F2937;
+    --color-text-strong: #F8FAFC;
+    --color-text: #CBD5E1;
+    --color-text-muted: #94A3B8;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-text);
+  }
+
+  /* Monospace tabular figures rule from DESIGN.md */
+  .tabular-nums, code, pre {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Custom smooth transitions */
+.transition-card {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
