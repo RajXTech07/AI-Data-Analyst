@@ -511,31 +511,6 @@ export const ResultsScreen = ({
   // Findings collapsed by default after analysis so user clicks to view details
   const [expandedMap, setExpandedMap] = useState({});
 
-  const toggleFinding = (id) => {
-    setExpandedMap((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
-
-  const areAllExpanded =
-    displayFindings.length > 0 &&
-    displayFindings.every((f) => Boolean(expandedMap[f.id]));
-
-  const handleToggleAll = () => {
-    if (areAllExpanded) {
-      setExpandedMap({});
-    } else {
-      const next = {};
-      displayFindings.forEach((f) => {
-        next[f.id] = true;
-      });
-      setExpandedMap(next);
-    }
-  };
-
-  const chatEndRef = useRef(null);
-
   // Dynamic suggested questions generated strictly from the active dataset's schema
   const dynamicSuggestedQuestions = React.useMemo(() => {
     const list = ['Which columns matter most?', 'What if I exclude incomplete rows?'];
@@ -591,6 +566,29 @@ export const ResultsScreen = ({
     }
     return [];
   }, [propsFindings, propsCharts, propsDatasetMeta]);
+
+  const toggleFinding = (id) => {
+    setExpandedMap((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
+  const areAllExpanded =
+    displayFindings.length > 0 &&
+    displayFindings.every((f) => Boolean(expandedMap[f.id]));
+
+  const handleToggleAll = () => {
+    if (areAllExpanded) {
+      setExpandedMap({});
+    } else {
+      const next = {};
+      displayFindings.forEach((f) => {
+        next[f.id] = true;
+      });
+      setExpandedMap(next);
+    }
+  };
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
