@@ -510,6 +510,7 @@ export const ResultsScreen = ({
   const [chartTypes, setChartTypes] = useState({});
   // Findings collapsed by default after analysis so user clicks to view details
   const [expandedMap, setExpandedMap] = useState({});
+  const chatEndRef = useRef(null);
 
   // Dynamic suggested questions generated strictly from the active dataset's schema
   const dynamicSuggestedQuestions = React.useMemo(() => {
