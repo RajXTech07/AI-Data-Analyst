@@ -3,7 +3,8 @@
  * Base URL: /api/v1 (proxied by Vite to http://localhost:8000)
  */
 
-const API_BASE = '/api/v1';
+const API_HOST = import.meta.env.VITE_API_BASE_URL || (import.meta.env.PROD ? 'https://ai-data-analyst-6y46.onrender.com' : '');
+const API_BASE = `${API_HOST}/api/v1`;
 
 class ApiClient {
   constructor() {
