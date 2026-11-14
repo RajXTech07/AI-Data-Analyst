@@ -1,3 +1,4 @@
+import asyncio
 from datetime import datetime, timezone
 from typing import Any
 import uuid
@@ -158,11 +159,11 @@ async def run_analysis(analysis_id: uuid.UUID, force_mock_llm: bool = False) -> 
 
         # Load dataset
         profile = DatasetProfile.model_validate(dataset.profile)
-        df = dataset_service.load_dataframe(dataset, cleaned=True)
+        df = await asyncio.to_thread(dataset_service.load_dataframe, dataset, cleaned=True)
 
         # 2. Planning Phase
         await event_bus.publish(analysis_id, "status", {"status": "planning", "message": "Formulating investigation plan..."})
-        plan: InvestigationPlan = make_plan(profile, analysis.question, llm)
+        plan: InvestigationPlan = await asyncio.to_thread(make_plan, profile, analysis.question, llm)
         analysis.plan = plan.model_dump()
         db.commit()
         await event_bus.publish(analysis_id, "plan", {"steps": [s.model_dump() for s in plan.steps]})
@@ -173,6 +174,9 @@ async def run_analysis(analysis_id: uuid.UUID, force_mock_llm: bool = False) -> 
         seq = 1
 
         for step in plan.steps:
+            # Yield event loop so concurrent polling HTTP requests are answered immediately
+            await asyncio.sleep(0.02)
+
             # Check for cancellation or limit
             db.refresh(analysis)
             if analysis.status == "cancelled":
@@ -183,7 +187,9 @@ async def run_analysis(analysis_id: uuid.UUID, force_mock_llm: bool = False) -> 
                 break
 
             context_summary = f"Executed {len(tool_executions)} tools so far. Last tool: {tool_executions[-1].tool_name if tool_executions else 'None'}."
-            tool_name, tool_args = execute_planned_step(step, df, profile, llm, prior_context=context_summary)
+            tool_name, tool_args = await asyncio.to_thread(
+                execute_planned_step, step, df, profile, llm, prior_context=context_summary
+            )
 
             await event_bus.publish(
                 analysis_id,
@@ -191,8 +197,8 @@ async def run_analysis(analysis_id: uuid.UUID, force_mock_llm: bool = False) -> 
                 {"seq": seq, "tool_name": tool_name, "arguments": tool_args, "goal": step.goal}
             )
 
-            # Pure tool execution
-            result = run_tool(tool_name, tool_args, df)
+            # Pure tool execution offloaded to worker thread to prevent event loop starvation
+            result = await asyncio.to_thread(run_tool, tool_name, tool_args, df)
 
             execution = ToolExecution(
                 analysis_id=analysis_id,
@@ -236,7 +242,7 @@ async def run_analysis(analysis_id: uuid.UUID, force_mock_llm: bool = False) -> 
 
         # 4. Interpretation & Finding Drafting
         await event_bus.publish(analysis_id, "status", {"status": "interpreting", "message": "Synthesizing evidence and grounding numbers..."})
-        finding_drafts = write_findings(tool_executions, llm)
+        finding_drafts = await asyncio.to_thread(write_findings, tool_executions, llm)
 
         # 5. Validation, Grounding & Persistence
         rank = 1
